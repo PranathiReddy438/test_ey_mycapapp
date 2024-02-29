@@ -1,0 +1,83 @@
+###Get the service document
+http://localhost:4004/odata/v4/CatalogService/
+ 
+###Get service metadata document
+http://localhost:4004/odata/v4/CatalogService/$metadata
+ 
+ 
+###Get All employees data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+ 
+###Get Single Employee Data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/d055c8de-6551-4c10-aeff-f8aec89212fa
+
+###Get All employees data - Pagination - loading data chunk by chunk
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&$skip=2
+ 
+
+###Get data based on filter
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=sex eq 'F'
+
+###Get data based on filter
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=sex eq 'M'
+
+###Count of records
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+ 
+###Selection of few columns
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$select=ID,nameFirst,sex
+
+###Insert Employee data
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+ 
+{
+      "nameFirst": "Mukkisa",
+      "nameMiddle": "",
+      "nameLast": "Pranathi",
+      "nameInitials": null,
+      "sex": "M",
+      "language": "E",
+      "phoneNumber": null,
+      "email": "pranathi.abap@gmail.com",
+      "loginName": "MUKKISAP",
+      "Currency_code": "USD",
+      "salaryAmount": 1000000,
+      "accountNumber": "8448454549",
+      "bankId": "121000358",
+      "bankName": "Bank of Baroda"
+}
+
+###Get the newly created employee
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/db05f433-de01-4aa6-9b23-9c058c620ccc
+ 
+###Update employee data
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/db05f433-de01-4aa6-9b23-9c058c620ccc
+Content-Type: application/json
+ 
+{
+    "salaryAmount": 1000000,
+    "Currency_code": "EUR"
+}
+ 
+ 
+###Delete the employee
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/42191fd8-cc08-41f6-8711-f2ea313b94d2
+
+###Get all Purchase Orders
+http://localhost:4004/odata/v4/CatalogService/POs
+ 
+###Get Single Purchase order
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC38052
+
+###Get the PO and PO Items data together - using $expand
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC38052?$expand=Items
+
+###Testing Action to boost order
+POST http://localhost:4004/odata/v4/CatalogService/POs('74867AD200E41EDBA5D8B0C98DC38052')/CatalogService.boost
+Content-Type: application/json
+ 
+{}
+ 
+###Test function to get largest order
+http://localhost:4004/odata/v4/CatalogService/largestOrder()
