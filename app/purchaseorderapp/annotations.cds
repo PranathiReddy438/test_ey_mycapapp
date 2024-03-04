@@ -27,6 +27,7 @@ annotate service.POs with @(
                 $Type : 'UI.DataField',
                 Value : GROSS_AMOUNT,
             },
+        
               {
                 $Type : 'UI.DataFieldForAction',
                 Label : 'boost',
